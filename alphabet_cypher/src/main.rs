@@ -8,22 +8,30 @@ fn main() {
     let mut output = String::new();
     for (input_idx, input_char) in body.char_indices() {
         let transpose_distance = transpose_table[input_idx % transpose_table.len()];
-        output.push(alpha_idx_to_char((char_to_alpha_idx(input_char) + transpose_distance) % 26));
+        output.push(alpha_idx_to_char(
+            (char_to_alpha_idx(input_char) + transpose_distance) % 26,
+        ));
     }
 
     println!("{}", output);
 }
 
 fn get_transpose_table(keyword: String) -> Vec<usize> {
-    return keyword.chars()
-                  .map(|character| char_to_alpha_idx(character))
-                  .collect();
+    return keyword
+        .chars()
+        .map(|character| char_to_alpha_idx(character))
+        .collect();
 }
 
 fn char_to_alpha_idx(character: char) -> usize {
-    return "abcdefghijklmnopqrstuvwxyz".find(character).expect("Bad char for char_to_alpha_idx");
+    return "abcdefghijklmnopqrstuvwxyz"
+        .find(character)
+        .expect("Bad char for char_to_alpha_idx");
 }
 
 fn alpha_idx_to_char(loc: usize) -> char {
-    return "abcdefghijklmnopqrstuvwxyz".chars().nth(loc).expect("Bad loc for alpha_idx_to_char");
+    return "abcdefghijklmnopqrstuvwxyz"
+        .chars()
+        .nth(loc)
+        .expect("Bad loc for alpha_idx_to_char");
 }
