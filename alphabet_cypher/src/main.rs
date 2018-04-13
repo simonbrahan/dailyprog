@@ -3,7 +3,7 @@ use std::env;
 fn main() {
     let keyword = env::args().nth(1).unwrap();
     let body = env::args().nth(2).unwrap();
-    let transpose_table = get_transpose_table(keyword);
+    let transpose_table = get_transpose_table(&keyword);
 
     let mut output = String::new();
     for (input_idx, input_char) in body.char_indices() {
@@ -16,11 +16,8 @@ fn main() {
     println!("{}", output);
 }
 
-fn get_transpose_table(keyword: String) -> Vec<usize> {
-    return keyword
-        .chars()
-        .map(|character| char_to_alpha_idx(character))
-        .collect();
+fn get_transpose_table(keyword: &str) -> Vec<usize> {
+    return keyword.chars().map(char_to_alpha_idx).collect();
 }
 
 fn char_to_alpha_idx(character: char) -> usize {
