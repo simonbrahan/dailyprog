@@ -17,18 +17,18 @@ fn main() {
 }
 
 fn get_transpose_table(keyword: &str) -> Vec<usize> {
-    return keyword.chars().map(char_to_alpha_idx).collect();
+    keyword.chars().map(char_to_alpha_idx).collect()
 }
 
 fn char_to_alpha_idx(character: char) -> usize {
-    return "abcdefghijklmnopqrstuvwxyz"
+    "abcdefghijklmnopqrstuvwxyz"
         .find(character)
-        .expect("Bad char for char_to_alpha_idx");
+        .expect("Bad char for char_to_alpha_idx")
 }
 
 fn alpha_idx_to_char(loc: usize) -> char {
-    return "abcdefghijklmnopqrstuvwxyz"
+    "abcdefghijklmnopqrstuvwxyz"
         .chars()
         .nth(loc)
-        .expect("Bad loc for alpha_idx_to_char");
+        .expect("Bad loc for alpha_idx_to_char")
 }
