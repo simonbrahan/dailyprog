@@ -5,7 +5,7 @@ fn main() {
     let body = env::args().nth(2).unwrap();
     let transpose_table = get_transpose_table(&keyword);
 
-    let mut output = String::new();
+    let mut output = String::with_capacity(body.len());
     for (input_idx, input_char) in body.char_indices() {
         let transpose_distance = transpose_table[input_idx % transpose_table.len()];
         output.push(alpha_idx_to_char(
