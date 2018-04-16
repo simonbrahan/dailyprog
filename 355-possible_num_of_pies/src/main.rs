@@ -11,7 +11,11 @@ fn ingredients_from_comma_separated(list: &str) -> Ingredients {
         })
         .collect();
 
-    return [parts[0], parts[1], parts[2], parts[3], parts[4]];
+    return ingredients_from_vec(parts);
+}
+
+fn ingredients_from_vec(vec: Vec<usize>) -> Ingredients {
+    [vec[0], vec[1], vec[2], vec[3], vec[4]]
 }
 
 fn num_can_bake(available: &Ingredients, recipe: &Ingredients) -> usize {
@@ -29,6 +33,18 @@ fn num_can_bake(available: &Ingredients, recipe: &Ingredients) -> usize {
         .unwrap();
 }
 
+fn remaining_after_baking(available: &Ingredients, recipe: &Ingredients, num_to_bake: &usize) -> Ingredients {
+    let ingredients_used = recipe.iter().map(|ingredient_count| ingredient_count * num_to_bake);
+
+    let ingredients_remaining: Vec<usize> = ingredients_used.zip(available)
+        .map(|(count_used, count_available)| {
+            return count_available - count_used;
+        })
+        .collect();
+
+    return ingredients_from_vec(ingredients_remaining);
+}
+
 fn main() {
     let input = &env::args()
         .nth(1)
@@ -38,6 +54,5 @@ fn main() {
     let pumpkin_pie = ingredients_from_comma_separated("1,0,3,4,3");
     let apple_pie = ingredients_from_comma_separated("0,1,4,3,2");
 
-    println!("{}", num_can_bake(&starting_ingredients, &pumpkin_pie));
-    println!("{}", num_can_bake(&starting_ingredients, &apple_pie));
+    remaining_after_baking(&starting_ingredients, &apple_pie, &2);
 }
