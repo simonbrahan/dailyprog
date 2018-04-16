@@ -3,29 +3,30 @@ use std::env;
 type Ingredients = [usize; 5];
 
 fn ingredients_from_comma_separated(list: &str) -> Ingredients {
-    let parts: Vec<usize> = list
-        .split(",")
-        .map(
-            |ingredient_count|
-                ingredient_count
-                    .parse::<usize>()
-                    .expect("Ingredient input must be five comma separated positive integers eg 10,0,4,3,2")
-        )
+    let parts: Vec<usize> = list.split(",")
+        .map(|ingredient_count| {
+            ingredient_count.parse::<usize>().expect(
+                "Ingredient input must be five comma separated positive integers eg 10,0,4,3,2",
+            )
+        })
         .collect();
 
     return [parts[0], parts[1], parts[2], parts[3], parts[4]];
 }
 
 fn num_can_bake(available: &Ingredients, recipe: &Ingredients) -> usize {
-    return available.iter().zip(recipe.iter()).map(
-        |(available_count, recipe_requirement)| {
+    return available
+        .iter()
+        .zip(recipe.iter())
+        .map(|(available_count, recipe_requirement)| {
             if recipe_requirement == &0 {
                 return usize::max_value();
             }
 
             return (available_count / recipe_requirement) as usize;
-        }
-    ).min().unwrap();
+        })
+        .min()
+        .unwrap();
 }
 
 fn main() {
