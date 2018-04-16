@@ -19,7 +19,7 @@ fn ingredients_from_vec(vec: Vec<usize>) -> Ingredients {
 }
 
 fn num_can_bake(available: &Ingredients, recipe: &Ingredients) -> usize {
-    return available
+    available
         .iter()
         .zip(recipe.iter())
         .map(|(available_count, recipe_requirement)| {
@@ -30,7 +30,7 @@ fn num_can_bake(available: &Ingredients, recipe: &Ingredients) -> usize {
             return (available_count / recipe_requirement) as usize;
         })
         .min()
-        .unwrap();
+        .unwrap()
 }
 
 fn remaining_after_baking(
