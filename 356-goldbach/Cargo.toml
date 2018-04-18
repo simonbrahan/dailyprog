@@ -1,0 +1,7 @@
+[package]
+name = "goldbach"
+version = "0.1.0"
+authors = ["Simon Brahan <tntpiranha@gmail.com>"]
+
+[dependencies]
+primal = "0.2.3"
