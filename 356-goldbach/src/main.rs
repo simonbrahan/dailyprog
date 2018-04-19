@@ -20,13 +20,9 @@ fn list_primes_until(input: usize) -> Vec<usize> {
 }
 
 fn get_goldbach_solution(input: usize) -> Option<[usize; 3]> {
-    let first_primes = list_primes_until(input);
-
-    for first_prime in first_primes {
-        let second_primes = list_primes_until(input - first_prime);
-        for second_prime in second_primes {
-            let third_primes = list_primes_until(input - first_prime - second_prime);
-            for third_prime in third_primes {
+    for first_prime in list_primes_until(input) {
+        for second_prime in list_primes_until(input - first_prime) {
+            for third_prime in list_primes_until(input - first_prime - second_prime) {
                 if first_prime + second_prime + third_prime == input {
                     return Some([first_prime, second_prime, third_prime]);
                 }
