@@ -13,7 +13,7 @@ fn kolakolski_seq(seq_ln: usize) -> Vec<usize> {
 
     let mut current_iteration = 3;
     while output.len() < seq_ln {
-        let examine_digit = output[current_iteration-1];
+        let examine_digit = output[current_iteration - 1];
 
         if current_iteration % 2 == 0 {
             output.extend(vec![2; examine_digit]);
