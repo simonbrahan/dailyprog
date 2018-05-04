@@ -24,6 +24,8 @@ fn kolakolski_seq(seq_ln: usize) -> Vec<usize> {
         current_iteration += 1;
     }
 
+    output.truncate(seq_ln);
+
     return output;
 }
 
